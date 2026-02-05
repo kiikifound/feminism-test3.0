@@ -118,8 +118,10 @@ function renderTest(app, ctx){
   const pct = Math.round(((i)/ (total)) * 100);
 
   const kindLabel = q.kind === "political" ? "现实倾向" : (q.kind === "consistency" ? "一致性" : "理解方式");
-  const left = ctx.axisLabel(q.axis).left;
-  const right = ctx.axisLabel(q.axis).right;
+  const axisDef = ctx.axisLabel(q.axis) || {};
+  const left = q.left || axisDef.left || "更接近左边";
+  const right = q.right || axisDef.right || "更接近右边";
+
 
   app.innerHTML = `
     <div class="testHeader">
